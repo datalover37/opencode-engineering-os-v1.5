@@ -1,0 +1,73 @@
+schema_version: 1
+task_id: T01
+feature: calculator
+title: Build calculator module and unittest coverage
+status: ready
+recommended_command: /develop-deepseek
+
+base_branch: main
+branch: agent/T01-calculator
+worktree: .worktrees/T01-calculator
+
+depends_on: []
+
+context:
+  architecture: >
+    This repository currently has no Python application code. The task adds a
+    single library module under src/ and standard-library unittest coverage
+    under tests/ without introducing third-party dependencies or broader
+    packaging changes.
+  interfaces:
+    - name: add
+      signature: add(a, b)
+      notes: Returns the arithmetic sum for supported numeric operands only.
+    - name: subtract
+      signature: subtract(a, b)
+      notes: Returns the arithmetic difference for supported numeric operands only.
+  assumptions:
+    - The developer can keep imports working within the allowed src/** and tests/** scope.
+    - The required verification command is the source of truth for test execution.
+    - Explicit bool rejection is required even though bool is a subclass of int in Python.
+
+scope:
+  allowed_paths:
+    - src/**
+    - tests/**
+  forbidden_paths:
+    - .opencode/**
+    - AGENTS.md
+    - opencode.jsonc
+
+requirements:
+  - Create src/calculator.py.
+  - Provide add(a, b).
+  - Provide subtract(a, b).
+  - Accept int and float operands only.
+  - Reject bool and every other type with TypeError.
+  - Create standard-library unittest tests under tests/.
+  - Use no third-party dependencies.
+
+acceptance_criteria:
+  - src/calculator.py exists and exports add(a, b) and subtract(a, b).
+  - add and subtract return correct results for representative int and float inputs.
+  - Passing bool for either operand raises TypeError in both public functions.
+  - Passing unsupported operand types raises TypeError in both public functions.
+  - tests/ contains unittest-based coverage for valid and invalid cases.
+  - No third-party dependency files or imports are added to satisfy the feature.
+
+verification:
+  baseline: []
+  final:
+    - python3 -m unittest discover -s tests -v
+    - git diff --check
+    - git status --short
+    - git rev-parse HEAD
+
+deliverables:
+  - src/calculator.py implementation
+  - unittest coverage under tests/
+  - pushed branch
+  - exact commit SHA
+  - structured completion report
+
+blockers: []
