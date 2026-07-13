@@ -1,0 +1,70 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ],
+  "default_agent": "leader",
+  "permission": {
+    "notion_*": "deny",
+    "obsidian_*": "deny",
+    "playwright_*": "deny",
+    "context7_*": "deny",
+    "exa_*": "deny",
+    "chrome-devtools_*": "deny",
+    "zapier_*": "deny",
+    "todoist_*": "deny"
+  },
+  "mcp": {
+    "notion": {
+      "type": "local",
+      "command": ["npx", "-y", "@notionhq/notion-mcp-server"],
+      "enabled": true,
+      "environment": {
+        "NOTION_API_KEY": "{env:NOTION_API_KEY}"
+      }
+    },
+    "obsidian": {
+      "type": "local",
+      "command": ["uvx", "mcp-obsidian"],
+      "enabled": true,
+      "environment": {
+        "OBSIDIAN_API_KEY": "{env:OBSIDIAN_API_KEY}",
+        "OBSIDIAN_HOST": "127.0.0.1",
+        "OBSIDIAN_PORT": "27124"
+      }
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      },
+      "enabled": true
+    },
+    "exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp",
+      "enabled": true
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
+      "enabled": true
+    },
+    "zapier": {
+      "type": "remote",
+      "url": "https://mcp.zapier.com/api/v1/connect",
+      "enabled": true
+    },
+    "todoist": {
+      "type": "remote",
+      "url": "https://ai.todoist.net/mcp",
+      "enabled": true
+    }
+  }
+}

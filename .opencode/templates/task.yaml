@@ -1,0 +1,44 @@
+schema_version: 1
+task_id: T01
+feature: feature-slug
+title: concise task title
+status: ready
+recommended_command: /develop-deepseek
+
+base_branch: main
+branch: agent/T01-task-slug
+worktree: .worktrees/T01-task-slug
+
+depends_on: []
+
+context:
+  architecture: >
+    Relevant context only.
+  interfaces: []
+  assumptions: []
+
+scope:
+  allowed_paths: []
+  forbidden_paths:
+    - .opencode/**
+    - AGENTS.md
+    - opencode.jsonc
+
+requirements: []
+acceptance_criteria: []
+
+verification:
+  baseline: []
+  final:
+    - git diff --check
+    - git status --short
+    - git rev-parse HEAD
+
+deliverables:
+  - implementation
+  - tests
+  - pushed branch
+  - exact commit SHA
+  - structured completion report
+
+blockers: []

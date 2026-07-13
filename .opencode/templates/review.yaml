@@ -1,0 +1,13 @@
+verdict: APPROVED | CHANGES_REQUESTED
+task_id: T01
+base_branch: main
+branch: agent/T01-task-slug
+commit: full-commit-sha
+summary: concise summary
+findings: []
+contract_compliance:
+  scope: PASS | FAIL
+  requirements: PASS | FAIL
+  acceptance_criteria: PASS | FAIL
+verification: []
+integration_risks: []
